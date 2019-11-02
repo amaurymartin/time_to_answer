@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   end
   namespace :admins_backoffice do
     get 'welcome/index'
+    resources :admins
+    resources :subjects
+    resources :questions
+    resources :answers
   end
   namespace :users_backoffice do
     get 'welcome/index'
