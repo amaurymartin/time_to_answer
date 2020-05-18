@@ -51,7 +51,6 @@ class AdminsBackoffice::QuestionsController < AdminsBackofficeController
 
   def question_params
     params.require(:question).permit(:description, :subject_id,
-      answers_attributes: %i[description correct]
-    )
+      answers_attributes: %i[id description correct _destroy])
   end
 end
