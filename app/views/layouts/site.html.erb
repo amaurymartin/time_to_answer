@@ -46,8 +46,14 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.email %><span class="caret"></span></a>
                   <ul class="dropdown-menu">
                     <li>
+                      <%= link_to users_backoffice_welcome_index_path do %>
+                        <i class="fa fa-user fa-fw"></i> Profile
+                      <% end %>
+                    </li>
+                    <li role="separator" class="divider"></li>
+                    <li>
                       <%= link_to destroy_user_session_path, method: :delete do %>
-                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Logout
+                        <i class="fa fa-sign-out fa-fw"></i> Logout
                       <% end %>
                     </li>
                   </ul>
@@ -67,5 +73,17 @@
     <%= javascript_include_tag 'application' %>
     <%= javascript_include_tag 'site' %>
 
+    <% if notice %>
+      <%= javascript_tag do %>
+        $.bootstrapGrowl('<%= notice %>', {
+          type: 'success', // (null, 'info', 'danger', 'success')
+          align: 'center', // ('left', 'right', or 'center')
+          width: 250, // (integer, or 'auto')
+          delay: 8000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
+          allow_dismiss: true, // If true then will display a cross to close the popup.
+          stackup_spacing: 10 // spacing between consecutively stacked growls.
+        });
+      <% end %>
+    <% end %>
   </body>
 </html>
