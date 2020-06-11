@@ -73,18 +73,26 @@
       <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron">
         <h1>Site::Welcome#index</h1>
-        <p>Find me in app/views/site/welcome/index.html.erb</p>
+        <h2>Find me in app/views/site/welcome/index.html.erb</h2>
 
-        <% if admin_signed_in? %>
-        <p>Admin is logged in - <%= current_admin.email %> </p>
+        <% unless params[:question] %>
+          <p> Last created questions</p>
         <% else %>
-        <p>Admin is not logged in</p>
+          <p><%= "Results for \"#{params[:question]}\":" %></p>
         <% end %>
 
-        <% if user_signed_in? %>
-        <p>User is logged in - <%= current_user.email %> </p>
-        <% else %>
-        <p>User is not logged in</p>
+        <% if false %>
+          <% if admin_signed_in? %>
+          <p>Admin is logged in - <%= current_admin.email %></p>
+          <% else %>
+          <p>Admin is not logged in</p>
+          <% end %>
+
+          <% if user_signed_in? %>
+          <p>User is logged in - <%= current_user.email %></p>
+          <% else %>
+          <p>User is not logged in</p>
+          <% end %>
         <% end %>
       </div>
         <%= yield %>
