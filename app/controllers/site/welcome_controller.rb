@@ -6,6 +6,8 @@ class Site::WelcomeController < SiteController
   private
 
   def set_questions
-    @questions = Question.last_questions(params[:page])
+    @questions = Question.with_answers
+                         .order_by(:created_at, :desc)
+                         .paginated(params[:page])
   end
 end
