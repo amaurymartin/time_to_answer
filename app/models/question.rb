@@ -6,4 +6,18 @@ class Question < ApplicationRecord
 
   #Kaminari - Elements per page
   paginates_per 5
+
+  def self.search(question, page)
+    Question.where('lower(description) LIKE ?',
+                   "%#{Question.sanitize_sql_like(question.downcase)}%")
+            .includes(:answers)
+            .order(created_at: :desc)
+            .page(page)
+  end
+
+  def self.last_questions(page)
+    Question.includes(:answers)
+            .order(created_at: :desc)
+            .page(page)
+  end
 end
