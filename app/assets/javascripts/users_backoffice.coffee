@@ -8,3 +8,4 @@
 //= require nprogress/nprogress
 //= require malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar
 //= require gentelella.min
+//= require bootstrap-growl-ifightcrime/jquery.bootstrap-growl

@@ -12,10 +12,12 @@
         other: Assuntos
       question:
         one: Questão
-        other: Questôes
+        other: Questões
     attributes:
       admin:
         id: Código
+        first_name: Nome
+        last_name: Sobrenome
         email: Email
         password: Senha
         password_confirmation: Confirmação da Senha
@@ -23,6 +25,8 @@
         updated_at: Atualizado em
       user:
         id: Código
+        first_name: Nome
+        last_name: Sobrenome
         email: Email
         password: Senha
         password_confirmation: Confirmação da Senha
