@@ -20,10 +20,10 @@
     <%= javascript_include_tag 'application' %>
     <%= javascript_include_tag 'user_devise' %>
 
-    <% if flash %>
-      <% flash.each do |key, value| %>
+    <% unless resource.errors.empty? %>
+      <% resource.errors.full_messages.each do |message| %>
         <%= javascript_tag do %>
-          $.bootstrapGrowl('<%= notice %>', {
+          $.bootstrapGrowl('<%= message %>', {
             type: 'danger', // (null, 'info', 'danger', 'success')
             align: 'center', // ('left', 'right', or 'center')
             width: 250, // (integer, or 'auto')
