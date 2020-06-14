@@ -26,85 +26,70 @@ namespace :dev do
 
   desc "Create default admin"
   task add_default_admin: :environment do
-    if Rails.env.development?
-      Admin.create!(
-        email: 'admin@admin.com',
-        password: DEFAULT_PASSWORD,
-        password_confirmation: DEFAULT_PASSWORD,
-      )
-    else
-      puts "Not in development environment"
-    end
+    Admin.create!(
+      email: 'admin@admin.com',
+      password: DEFAULT_PASSWORD,
+      password_confirmation: DEFAULT_PASSWORD,
+    )
   end
 
   desc "Create fake admins"
   task add_fake_admins: :environment do
-    if Rails.env.development?
-      9.times do
-        Admin.create!(
-          email: Faker::Internet.email,
-          password: DEFAULT_PASSWORD,
-          password_confirmation: DEFAULT_PASSWORD,
-        )
-      end
-    else
-      puts "Not in development environment"
+    9.times do
+      Admin.create!(
+        email: Faker::Internet.email,
+        password: DEFAULT_PASSWORD,
+        password_confirmation: DEFAULT_PASSWORD,
+      )
     end
   end
 
   desc "Create default user"
   task add_default_user: :environment do
-    if Rails.env.development?
-      User.create!(
-        email: 'user@user.com',
-        password: DEFAULT_PASSWORD,
-        password_confirmation: DEFAULT_PASSWORD,
-      )
-    else
-      puts "Not in development environment"
-    end
+    User.create!(
+      email: 'user@user.com',
+      password: DEFAULT_PASSWORD,
+      password_confirmation: DEFAULT_PASSWORD,
+    )
   end
 
   desc "Create fake users"
   task add_fake_users: :environment do
-    if Rails.env.development?
-      9.times do
-        User.create!(
-          email: Faker::Internet.email,
-          password: DEFAULT_PASSWORD,
-          password_confirmation: DEFAULT_PASSWORD,
-        )
-      end
-    else
-      puts "Not in development environment"
+    9.times do
+      User.create!(
+        email: Faker::Internet.email,
+        password: DEFAULT_PASSWORD,
+        password_confirmation: DEFAULT_PASSWORD,
+      )
     end
   end
 
   desc "Create default subjects"
   task add_default_subjects: :environment do
-    if Rails.env.development?
-      file_name = 'subjects.txt'
-      file_path = File.join(DEFAULT_FILES_PATH, file_name)
+    file_name = 'subjects.txt'
+    file_path = File.join(DEFAULT_FILES_PATH, file_name)
 
-      File.open(file_path, 'r').each do |line|
-        Subject.create!(description: line.strip)
-      end
-    else
-      puts "Not in development environment"
+    File.open(file_path, 'r').each do |line|
+      Subject.create!(description: line.strip)
     end
   end
 
   desc "Create default questions and answers"
   task add_default_questions_and_answers: :environment do
-    if Rails.env.development?
-      Subject.all.each do |subject|
-        rand(4..20).times do |i|
-          params = create_question_params(subject, create_answers_attr)
-          Question.create!(params)
-        end
+    Subject.all.each do |subject|
+      rand(4..20).times do |i|
+        params = create_question_params(subject, create_answers_attr)
+        Question.create!(params)
       end
-    else
-      puts "Not in development environment"
+    end
+  end
+
+  desc "Reset subjects questions counter"
+  task reset_subject_questions_counter: :environment do
+    show_spinner("Reseting subjects questions counter") do
+      Subject.find_each do |subject|
+        Subject.reset_counters(subject.id, :questions)
+      end
     end
   end
 
