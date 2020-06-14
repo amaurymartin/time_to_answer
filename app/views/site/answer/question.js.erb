@@ -1,0 +1,28 @@
+var btn_submit = document.getElementById("btn-submit-<%= @answer.question_id %>");
+
+btn_submit.classList.remove('btn-default');
+btn_submit.classList.remove('btn-success');
+btn_submit.classList.remove('btn-danger');
+<% if @answer.correct %>
+  btn_submit.classList.add('btn-success');
+
+  $.bootstrapGrowl('Correct!', {
+    type: 'success', // (null, 'info', 'danger', 'success')
+    align: 'center', // ('left', 'right', or 'center')
+    width: 250, // (integer, or 'auto')
+    delay: 8000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
+    allow_dismiss: true, // If true then will display a cross to close the popup.
+    stackup_spacing: 10 // spacing between consecutively stacked growls.
+  });
+<% else %>
+  btn_submit.classList.add('btn-danger');
+
+  $.bootstrapGrowl('Wrong!', {
+    type: 'danger', // (null, 'info', 'danger', 'success')
+    align: 'center', // ('left', 'right', or 'center')
+    width: 250, // (integer, or 'auto')
+    delay: 8000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
+    allow_dismiss: true, // If true then will display a cross to close the popup.
+    stackup_spacing: 10 // spacing between consecutively stacked growls.
+  });
+<% end %>

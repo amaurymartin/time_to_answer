@@ -69,32 +69,6 @@
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
       </nav>
-
-      <!-- Main component for a primary marketing message or call to action -->
-      <div class="jumbotron">
-        <h1>Site::Welcome#index</h1>
-        <h2>Find me in app/views/site/welcome/index.html.erb</h2>
-
-        <% unless params[:question] %>
-          <p> Last created questions</p>
-        <% else %>
-          <p><%= "Results for \"#{params[:question]}\":" %></p>
-        <% end %>
-
-        <% if false %>
-          <% if admin_signed_in? %>
-          <p>Admin is logged in - <%= current_admin.email %></p>
-          <% else %>
-          <p>Admin is not logged in</p>
-          <% end %>
-
-          <% if user_signed_in? %>
-          <p>User is logged in - <%= current_user.email %></p>
-          <% else %>
-          <p>User is not logged in</p>
-          <% end %>
-        <% end %>
-      </div>
         <%= yield %>
     </div> <!-- /container -->
 
