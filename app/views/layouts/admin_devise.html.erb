@@ -24,7 +24,7 @@
     <% if flash %>
       <% flash.each do |key, value| %>
         <%= javascript_tag do %>
-          $.bootstrapGrowl('<%= notice %>', {
+          $.bootstrapGrowl('<%= value %>', {
             type: 'danger', // (null, 'info', 'danger', 'success')
             align: 'center', // ('left', 'right', or 'center')
             width: 250, // (integer, or 'auto')

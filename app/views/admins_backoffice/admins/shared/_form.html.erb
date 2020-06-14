@@ -1,11 +1,11 @@
 <div class="row">
 
   <div class="col-lg-12">
-    <% if @user.errors.any? %>
+    <% if @admin.errors.any? %>
       <div class="alert alert-danger alert-dismissable">
         <button type="button" class="close" data-dismiss="alert" aria-hiddem="true">x</button>
           <ul>
-            <% @user.errors.full_messages.each do |message| %>
+            <% @admin.errors.full_messages.each do |message| %>
               <li> <%= message %> </li>
             <% end %>
           </ul>
@@ -20,7 +20,7 @@
       <div class="panel-body">
         <div class="row">
             <div class="col-lg-12">
-            <%= form_with(model: [:users_backoffice, @user], local: true) do |f| %>
+            <%= form_with(model: [:admins_backoffice, @admin], local: true) do |f| %>
 
               <div class="form-group">
                 <%= f.label :email %>
