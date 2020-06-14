@@ -8,6 +8,7 @@ class Question < ApplicationRecord
   paginates_per 5
 
   scope :with_answers, -> { includes(:answers) }
+  scope :with_answers_and_subject, -> { includes(:answers, :subject) }
 
   scope :order_by, ->(order, direction) { order("#{order} #{direction}") }
 
@@ -17,4 +18,6 @@ class Question < ApplicationRecord
     where('lower(description) LIKE ?',
           "%#{Question.sanitize_sql_like(question.downcase)}%")
   }
+
+  scope :_search_subject_, ->(subject_id) { where(subject_id: subject_id) }
 end

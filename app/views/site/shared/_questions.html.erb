@@ -3,11 +3,7 @@
   <h1>Site::Welcome#index</h1>
   <h2>Find me in app/views/site/welcome/index.html.erb</h2>
 
-  <% unless params[:question] %>
-    <p> Last created questions</p>
-  <% else %>
-    <p><%= "Results for \"#{params[:question]}\":" %></p>
-  <% end %>
+  <p><%= msg_jumbotron %></p>
 
   <% if false %>
     <% if admin_signed_in? %>
@@ -28,7 +24,12 @@
   <%= form_with url: site_answer_path do |form| %>
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title"><%= question.description %></h3>
+        <h3 class="panel-title">
+          <span class="label label-info" style="margin-right: 10px;">
+            <%= link_to question.subject.description, site_search_subject_path(question.subject_id, question.subject.description), style:"color: white" %>
+          </span>
+          <%= question.description %>
+        </h3>
       </div>
       <div class="panel-body">
         <ul>
