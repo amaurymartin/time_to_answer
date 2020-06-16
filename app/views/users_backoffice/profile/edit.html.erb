@@ -61,9 +61,35 @@
             <div class="form-group">
               <%= user_profile_form.label :gender, class:"control-label col-md-3 col-sm-3 col-xs-12" %>
               <div class="col-md-6 col-sm-6 col-xs-12">
-                <%= user_profile_form.text_field :gender, class:"form-control col-md-7 col-xs-12" %>
+                <div id="gender" class="btn-group" data-toggle="buttons">
+                  <label class="btn <%= gender_select(@user, 'M') %>", data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                    <%= user_profile_form.radio_button :gender, 'M' %>&nbsp; Male &nbsp;
+                  </label>
+                  <label class="btn <%= gender_select(@user, 'F') %>", data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                    <%= user_profile_form.radio_button :gender, 'F' %>&nbsp; Female &nbsp;
+                  </label>
+                </div>
               </div>
             </div>
+
+            <%= javascript_tag do %>
+              var gender_labels = document.querySelectorAll('div#gender label')
+
+              gender_labels.forEach((gender_label) => {
+                gender_label.addEventListener('click', () => {
+                  gender_label.classList.remove('btn-default')
+                  gender_label.classList.add('btn-primary')
+
+                  gender_labels.forEach((gl) => {
+                    if(gl !== gender_label) {
+                      gl.classList.remove('btn-primary')
+                      gl.classList.add('btn-default')
+                    }
+                  })
+                })
+              })
+            <% end %>
+
             <div class="form-group">
               <%= user_profile_form.label :birthdate, class:"control-label col-md-3 col-sm-3 col-xs-12" %>
               <div class="col-md-6 col-sm-6 col-xs-12">
