@@ -9,3 +9,5 @@
 //= require malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar
 //= require gentelella.min
 //= require bootstrap-growl-ifightcrime/jquery.bootstrap-growl
+//= require jquery-ui/ui/widgets/datepicker
+//= require jquery-ui/ui/i18n/datepicker-pt-BR

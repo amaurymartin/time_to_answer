@@ -188,7 +188,7 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+            <%= link_to "Gentelella - Bootstrap Admin Template", root_path %>
           </div>
           <div class="clearfix"></div>
         </footer>
@@ -211,5 +211,12 @@
         });
       <% end %>
     <% end %>
+
+    <%= javascript_tag do %>
+      $(function() {
+        $('.datepicker').datepicker();
+      });
+    <% end  %>
+
   </body>
 </html>
