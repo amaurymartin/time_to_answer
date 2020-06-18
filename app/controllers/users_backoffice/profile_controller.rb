@@ -10,7 +10,11 @@ class UsersBackoffice::ProfileController < UsersBackofficeController
 
   def update
     if @user.update(update_user_params)
-      redirect_to users_backoffice_profile_path, notice: 'User was successfully updated.'
+      if update_user_params[:user_profile_attributes][:user_avatar]
+        redirect_to users_backoffice_welcome_index_path, notice: 'User avatar was successfully updated.'
+      else
+        redirect_to users_backoffice_profile_path, notice: 'User was successfully updated.'
+      end
     else
       render :edit
     end
@@ -28,7 +32,7 @@ class UsersBackoffice::ProfileController < UsersBackofficeController
 
   def update_user_params
     params.require(:user).permit(%i[first_name last_name password password_confirmation],
-                                 user_profile_attributes: %i[id address gender birthdate])
+                                 user_profile_attributes: %i[id address gender birthdate user_avatar])
   end
 
   def verify_password
