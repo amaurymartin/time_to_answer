@@ -1,0 +1,14 @@
+$('#userAvatarModal').modal('hide');
+
+document.getElementById('user_avatar_image_large').src = "<%= url_for(@user.user_profile.user_avatar) %>"
+document.getElementById('user_avatar_image_medium').src = "<%= url_for(@user.user_profile.user_avatar) %>"
+document.getElementById('user_avatar_image_small').src = "<%= url_for(@user.user_profile.user_avatar) %>"
+
+$.bootstrapGrowl('User Avatar was successfully updated.', {
+    type: 'success', // (null, 'info', 'danger', 'success')
+    align: 'center', // ('left', 'right', or 'center')
+    width: 250, // (integer, or 'auto')
+    delay: 8000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
+    allow_dismiss: true, // If true then will display a cross to close the popup.
+    stackup_spacing: 10 // spacing between consecutively stacked growls.
+});

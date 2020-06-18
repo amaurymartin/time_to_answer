@@ -10,9 +10,7 @@ class UsersBackoffice::ProfileController < UsersBackofficeController
 
   def update
     if @user.update(update_user_params)
-      if update_user_params[:user_profile_attributes][:user_avatar]
-        redirect_to users_backoffice_welcome_index_path, notice: 'User avatar was successfully updated.'
-      else
+      unless update_user_params[:user_profile_attributes][:user_avatar]
         redirect_to users_backoffice_profile_path, notice: 'User was successfully updated.'
       end
     else
