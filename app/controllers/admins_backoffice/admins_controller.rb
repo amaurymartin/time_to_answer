@@ -25,6 +25,7 @@ class AdminsBackoffice::AdminsController < AdminsBackofficeController
 
   def update
     if @admin.update(admin_params)
+      AdminMailer.profile_update_email(current_admin, @admin).deliver_now
       redirect_to admins_backoffice_admins_path, notice: 'Administrator was successfully updated.'
     else
       render :edit
